@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>document</title>
+    </head>
+    <body>
+      <form action="form" method="POST" enctype="multipart/form-data" id="testForm">
+        <input type="text" name="name">
+        <input type="password" name="password">
+        <input type="file" name="file">
+        <input type="submit">
+      </form>
+    </body>
+    <script>
+      var form = document.getElementById('testForm')
+      form.addEventListener('submit', function(e){
+        e.preventDefault()          //页面就不会跳转啦
+        var formData = new FormData(form)
+        fetch('/form',{      //fetch api 自动的会找出contetn-type, 所以                       自己不用声明
+          method: 'POST',
+          body:formData
+        })
+      })
+    </script>
+</html>
